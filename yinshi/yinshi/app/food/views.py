@@ -34,13 +34,19 @@ def debug(request):
 # 获取单个词语省份，月份，小时，属性多维度统计
 def baike(request):
     word = request.GET.get('word',"")
-    if word:
-        models.insert_query_history(word)
+    #if word:
+    #    models.insert_query_history(word)
 
     t = get_template('baike.html')
     context = Context({'top_words':models.get_hot_query(4)})
     html = t.render(context)
     return HttpResponse(html)
+
+def insert_query_history(request):
+    #logging.info(urllib.unquote(request.GET.get('word',"")))
+    words_unquote = urllib.unquote(request.GET.get('word',""))
+    models.insert_query_history(words_unquote)
+    return HttpResponse(None)
 
 def get_top_word(request):
     result = models.get_hot_query(1000)

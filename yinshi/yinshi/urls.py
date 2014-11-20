@@ -12,10 +12,11 @@ urlpatterns = patterns('',
 
     url(r'^getcontent',views.get_content),
     url(r'^search/$',views.wordcloud),
-     url(r'^autocomplate',views.get_top_word),
+    url(r'^autocomplate',views.get_top_word),
     url(r'^analyse/(.*)',views.analyse),
+    url(r'^insertqueryhistory/.*',views.insert_query_history),
     url(r'^cache',views.gen_cache),
     url(r'^baike',views.baike),
-
+    
     url(r'^admin/', include(admin.site.urls)),
 )

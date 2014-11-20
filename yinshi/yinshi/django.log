@@ -1850,3 +1850,503 @@
  16556: 2014-11-19 22:08:42 cal_pmi 135 kind:all sex: time:noon month: province:北京 cal_pmi end:
  16556: 2014-11-19 22:08:42 wordcloud 102 request info sex: time:noon province:北京 kind:all 
  16556: 2014-11-19 22:08:42 wordcloud 119 wordcloud done!
+ 8392: 2014-11-20 20:27:58 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 8392: 2014-11-20 20:27:58 execute 91 (0.000) SHOW TABLES; args=None
+ 8392: 2014-11-20 20:27:58 execute 91 (0.016) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 10000: 2014-11-20 20:35:03 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:35:03 execute 91 (0.000) SHOW TABLES; args=None
+ 10000: 2014-11-20 20:35:03 execute 91 (0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 10000: 2014-11-20 20:39:59 index 16 hello open
+ 10000: 2014-11-20 20:39:59 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:39:59 execute 91 (0.002) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 10000: 2014-11-20 20:40:00 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:00 cal_pmi 79 kind:all sex: time: province:北京 cal_pmi begin:
+ 10000: 2014-11-20 20:40:00 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 10000: 2014-11-20 20:40:00 execute 91 (0.000) select content from cache where province = '北京' and sex = '' and time = '' and kind = 'all'; args=(u'\u5317\u4eac', u'', u'', u'all')
+ 10000: 2014-11-20 20:40:00 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 10000: 2014-11-20 20:40:01 cal_pmi 135 kind:all sex: time: month: province:北京 cal_pmi end:
+ 10000: 2014-11-20 20:40:01 wordcloud 102 request info sex: time: province:北京 kind:all 
+ 10000: 2014-11-20 20:40:01 wordcloud 119 wordcloud done!
+ 10000: 2014-11-20 20:40:08 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:08 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,1000; args=None
+ 10000: 2014-11-20 20:40:09 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:09 execute 91 (0.098) insert into query_history(word) values('\'\''); args=(u"''",)
+ 10000: 2014-11-20 20:40:09 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 10000: 2014-11-20 20:40:10 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:10 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:10 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:10 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:10 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:10 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:12 execute 91 (1.891) select month,count(id) from basic_data_new
+        where food = '\'\''  group by month having count(id) > 3 order by month  asc; args=[u"''"]
+ 10000: 2014-11-20 20:40:12 execute 91 (1.891) select hour,count(id) from basic_data_new
+        where food = '\'\''  group by hour having count(id) > 3 order by hour  asc; args=[u"''"]
+ 10000: 2014-11-20 20:40:12 execute 91 (1.891) select province,count(id) from basic_data_new
+        where food = '\'\''  group by province having count(id) > 3 order by province  asc; args=[u"''"]
+ 10000: 2014-11-20 20:40:13 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:13 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 10000: 2014-11-20 20:40:14 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:14 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:14 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:14 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:14 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:14 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = ''  group by province having count(id) > 3 order by province  asc; args=[u'']
+ 10000: 2014-11-20 20:40:14 execute 91 (0.002) select month,count(id) from basic_data_new
+        where food = ''  group by month having count(id) > 3 order by month  asc; args=[u'']
+ 10000: 2014-11-20 20:40:14 execute 91 (0.002) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:14 execute 91 (0.001) select hour,count(id) from basic_data_new
+        where food = ''  group by hour having count(id) > 3 order by hour  asc; args=[u'']
+ 10000: 2014-11-20 20:40:16 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:16 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 10000: 2014-11-20 20:40:16 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:16 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:16 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:16 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = ''  group by province having count(id) > 3 order by province  asc; args=[u'']
+ 10000: 2014-11-20 20:40:16 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:16 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:16 execute 91 (0.001) select month,count(id) from basic_data_new
+        where food = ''  group by month having count(id) > 3 order by month  asc; args=[u'']
+ 10000: 2014-11-20 20:40:16 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:16 execute 91 (0.001) select hour,count(id) from basic_data_new
+        where food = ''  group by hour having count(id) > 3 order by hour  asc; args=[u'']
+ 10000: 2014-11-20 20:40:42 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:42 execute 91 (0.001) insert into query_history(word) values('\'\''); args=(u"''",)
+ 10000: 2014-11-20 20:40:42 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 10000: 2014-11-20 20:40:43 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:43 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:43 analyse 193 get_word begin:
+ 10000: 2014-11-20 20:40:43 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:43 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = '\'\''  group by province having count(id) > 3 order by province  asc; args=[u"''"]
+ 10000: 2014-11-20 20:40:43 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:43 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 10000: 2014-11-20 20:40:43 execute 91 (0.001) select month,count(id) from basic_data_new
+        where food = '\'\''  group by month having count(id) > 3 order by month  asc; args=[u"''"]
+ 10000: 2014-11-20 20:40:43 execute 91 (0.002) select hour,count(id) from basic_data_new
+        where food = '\'\''  group by hour having count(id) > 3 order by hour  asc; args=[u"''"]
+ 5056: 2014-11-20 20:48:06 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:48:06 execute 91 (0.001) SHOW TABLES; args=None
+ 5056: 2014-11-20 20:48:06 execute 91 (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 5056: 2014-11-20 20:54:18 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:18 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:54:19 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:54:19 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:54:19 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:19 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = '\'\''  group by province having count(id) > 3 order by province  asc; args=[u"''"]
+ 5056: 2014-11-20 20:54:19 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:19 execute 91 (0.001) select month,count(id) from basic_data_new
+        where food = '\'\''  group by month having count(id) > 3 order by month  asc; args=[u"''"]
+ 5056: 2014-11-20 20:54:19 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:54:19 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:19 execute 91 (0.000) select hour,count(id) from basic_data_new
+        where food = '\'\''  group by hour having count(id) > 3 order by hour  asc; args=[u"''"]
+ 5056: 2014-11-20 20:54:24 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:24 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:54:24 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:54:24 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:54:24 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:24 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:24 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:54:24 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:54:25 execute 91 (1.028) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:54:25 execute 91 (1.026) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:54:25 execute 91 (1.029) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:54:25 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:54:25 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:54:25 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:54:25 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5056: 2014-11-20 20:54:25 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:54:25 execute 91 (0.002) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5056: 2014-11-20 20:54:25 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5056: 2014-11-20 20:54:25 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:54:25 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:56:27 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:56:27 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:56:28 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:56:28 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:56:28 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:56:28 execute 91 (0.002) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:56:28 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:56:28 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:56:28 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:56:28 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5056: 2014-11-20 20:56:28 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:56:28 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:56:28 execute 91 (0.002) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:56:28 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:56:28 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5056: 2014-11-20 20:56:28 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:56:28 execute 91 (0.003) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:56:28 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:56:28 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5056: 2014-11-20 20:56:28 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:57:02 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:57:02 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:57:03 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:57:03 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:57:03 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:57:03 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:57:03 execute 91 (0.002) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:57:03 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:57:03 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5056: 2014-11-20 20:57:03 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:57:03 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:57:03 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:57:03 execute 91 (0.003) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:57:03 execute 91 (0.003) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:57:03 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:57:03 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:57:03 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5056: 2014-11-20 20:57:03 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5056: 2014-11-20 20:57:03 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:57:03 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:58:46 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:46 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:58:47 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:58:47 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:47 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:58:47 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:58:47 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5056: 2014-11-20 20:58:47 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:58:48 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:58:48 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:58:48 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:48 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:48 execute 91 (0.002) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:58:48 execute 91 (0.003) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:58:48 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:58:48 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:58:48 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5056: 2014-11-20 20:58:48 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5056: 2014-11-20 20:58:48 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:58:48 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:58:52 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:52 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:58:53 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:58:53 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:58:53 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:58:53 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:53 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:53 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:58:53 execute 91 (0.083) select month,count(id) from basic_data_new
+        where food = '\'int'  group by month having count(id) > 3 order by month  asc; args=[u"'int"]
+ 5056: 2014-11-20 20:58:53 execute 91 (0.097) select province,count(id) from basic_data_new
+        where food = '\'int'  group by province having count(id) > 3 order by province  asc; args=[u"'int"]
+ 5056: 2014-11-20 20:58:53 execute 91 (0.101) select hour,count(id) from basic_data_new
+        where food = '\'int'  group by hour having count(id) > 3 order by hour  asc; args=[u"'int"]
+ 5056: 2014-11-20 20:59:16 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:16 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:59:17 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:59:17 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:17 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:59:17 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:59:17 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:59:17 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:59:17 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5056: 2014-11-20 20:59:17 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:59:17 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:17 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:17 execute 91 (0.003) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:59:17 execute 91 (0.003) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 20:59:17 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:59:17 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5056: 2014-11-20 20:59:17 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 20:59:17 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:59:17 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5056: 2014-11-20 20:59:17 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 20:59:21 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:21 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 20:59:21 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:59:21 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:21 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:59:21 execute 91 (0.000) select province,count(id) from basic_data_new
+        where food = '\'int'  group by province having count(id) > 3 order by province  asc; args=[u"'int"]
+ 5056: 2014-11-20 20:59:21 analyse 193 get_word begin:
+ 5056: 2014-11-20 20:59:21 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:21 execute 91 (0.001) select month,count(id) from basic_data_new
+        where food = '\'int'  group by month having count(id) > 3 order by month  asc; args=[u"'int"]
+ 5056: 2014-11-20 20:59:21 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 20:59:21 execute 91 (0.000) select hour,count(id) from basic_data_new
+        where food = '\'int'  group by hour having count(id) > 3 order by hour  asc; args=[u"'int"]
+ 5056: 2014-11-20 21:03:12 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:03:12 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 21:03:55 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:03:55 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 21:03:56 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:03:56 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:03:56 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = '\'int'  group by province having count(id) > 3 order by province  asc; args=[u"'int"]
+ 5056: 2014-11-20 21:03:56 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:03:56 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:03:56 execute 91 (0.001) select month,count(id) from basic_data_new
+        where food = '\'int'  group by month having count(id) > 3 order by month  asc; args=[u"'int"]
+ 5056: 2014-11-20 21:03:56 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:03:56 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:03:56 execute 91 (0.000) select hour,count(id) from basic_data_new
+        where food = '\'int'  group by hour having count(id) > 3 order by hour  asc; args=[u"'int"]
+ 5056: 2014-11-20 21:04:01 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:04:01 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 21:04:02 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:04:02 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:04:02 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:04:02 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:04:02 execute 91 (0.002) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 21:04:02 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 21:04:02 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:04:02 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5056: 2014-11-20 21:04:02 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 21:04:02 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:04:02 execute 91 (0.003) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 21:04:02 execute 91 (0.003) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 21:04:02 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 21:04:02 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 21:04:02 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5056: 2014-11-20 21:04:02 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5056: 2014-11-20 21:04:02 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 21:04:02 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 21:06:34 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:06:34 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5056: 2014-11-20 21:06:35 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:06:35 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:06:35 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:06:35 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:06:35 analyse 193 get_word begin:
+ 5056: 2014-11-20 21:06:35 execute 91 (0.003) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 21:06:35 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 21:06:35 execute 91 (0.002) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 21:06:35 execute 91 (0.002) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5056: 2014-11-20 21:06:35 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 21:06:35 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 21:06:35 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5056: 2014-11-20 21:06:35 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5056: 2014-11-20 21:06:35 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5056: 2014-11-20 21:06:35 execute 91 (0.002) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5056: 2014-11-20 21:06:35 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5056: 2014-11-20 21:06:35 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5056: 2014-11-20 21:06:35 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5424: 2014-11-20 21:07:23 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5424: 2014-11-20 21:07:23 execute 91 (0.000) SHOW TABLES; args=None
+ 5424: 2014-11-20 21:07:23 execute 91 (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 5424: 2014-11-20 21:07:30 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5424: 2014-11-20 21:07:30 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5424: 2014-11-20 21:07:31 analyse 193 get_word begin:
+ 5424: 2014-11-20 21:07:31 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5424: 2014-11-20 21:07:31 execute 91 (0.002) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5424: 2014-11-20 21:07:31 analyse 193 get_word begin:
+ 5424: 2014-11-20 21:07:31 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5424: 2014-11-20 21:07:31 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5424: 2014-11-20 21:07:31 analyse 193 get_word begin:
+ 5424: 2014-11-20 21:07:31 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5424: 2014-11-20 21:07:31 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5424: 2014-11-20 21:07:31 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5424: 2014-11-20 21:07:31 execute 91 (0.003) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5424: 2014-11-20 21:07:31 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5424: 2014-11-20 21:07:31 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5424: 2014-11-20 21:07:31 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5424: 2014-11-20 21:07:31 execute 91 (0.003) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5424: 2014-11-20 21:07:31 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5424: 2014-11-20 21:07:31 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5424: 2014-11-20 21:07:31 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5080: 2014-11-20 21:09:06 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:06 execute 91 (0.000) SHOW TABLES; args=None
+ 5080: 2014-11-20 21:09:06 execute 91 (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 5080: 2014-11-20 21:09:31 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:31 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5080: 2014-11-20 21:09:32 analyse 193 get_word begin:
+ 5080: 2014-11-20 21:09:32 analyse 193 get_word begin:
+ 5080: 2014-11-20 21:09:32 analyse 193 get_word begin:
+ 5080: 2014-11-20 21:09:32 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:32 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:32 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:32 execute 91 (0.002) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5080: 2014-11-20 21:09:32 execute 91 (0.003) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5080: 2014-11-20 21:09:32 execute 91 (0.003) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5080: 2014-11-20 21:09:32 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5080: 2014-11-20 21:09:32 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5080: 2014-11-20 21:09:32 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5080: 2014-11-20 21:09:32 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5080: 2014-11-20 21:09:32 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5080: 2014-11-20 21:09:32 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5080: 2014-11-20 21:09:32 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5080: 2014-11-20 21:09:32 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5080: 2014-11-20 21:09:32 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5080: 2014-11-20 21:09:51 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:51 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 5080: 2014-11-20 21:09:52 analyse 193 get_word begin:
+ 5080: 2014-11-20 21:09:52 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:52 analyse 193 get_word begin:
+ 5080: 2014-11-20 21:09:52 execute 91 (0.003) select province,count(id) from basic_data_new
+        where food = '金鼎轩'  group by province having count(id) > 3 order by province  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5080: 2014-11-20 21:09:52 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5080: 2014-11-20 21:09:52 analyse 193 get_word begin:
+ 5080: 2014-11-20 21:09:52 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 5080: 2014-11-20 21:09:52 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5080: 2014-11-20 21:09:52 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:52 execute 91 (0.002) SET SQL_AUTO_IS_NULL = 0; args=None
+ 5080: 2014-11-20 21:09:52 execute 91 (0.003) select month,count(id) from basic_data_new
+        where food = '金鼎轩'  group by month having count(id) > 3 order by month  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5080: 2014-11-20 21:09:52 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5080: 2014-11-20 21:09:52 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 5080: 2014-11-20 21:09:52 execute 91 (0.003) select hour,count(id) from basic_data_new
+        where food = '金鼎轩'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u91d1\u9f0e\u8f69']
+ 5080: 2014-11-20 21:09:52 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 5080: 2014-11-20 21:09:52 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 5080: 2014-11-20 21:09:52 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 5080: 2014-11-20 21:09:52 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 6260: 2014-11-20 21:14:02 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 6260: 2014-11-20 21:14:02 execute 91 (0.000) SHOW TABLES; args=None
+ 6260: 2014-11-20 21:14:02 execute 91 (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 6260: 2014-11-20 21:14:04 insert_query_history 46 金鼎轩
+ 6260: 2014-11-20 21:14:04 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 6260: 2014-11-20 21:14:04 execute 91 (0.000) insert into query_history(word) values('金鼎轩'); args=(u'\u91d1\u9f0e\u8f69',)
+ 2440: 2014-11-20 21:15:56 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:15:56 execute 91 (0.000) SHOW TABLES; args=None
+ 2440: 2014-11-20 21:15:56 execute 91 (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 2440: 2014-11-20 21:16:11 insert_query_history 46 金鼎轩
+ 2440: 2014-11-20 21:16:11 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:16:11 execute 91 (0.000) insert into query_history(word) values('金鼎轩'); args=(u'\u91d1\u9f0e\u8f69',)
+ 2440: 2014-11-20 21:17:00 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:00 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 2440: 2014-11-20 21:17:00 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:00 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:00 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:00 execute 91 (0.001) select province,count(id) from basic_data_new
+        where food = '\'int'  group by province having count(id) > 3 order by province  asc; args=[u"'int"]
+ 2440: 2014-11-20 21:17:00 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:00 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:00 execute 91 (0.000) select month,count(id) from basic_data_new
+        where food = '\'int'  group by month having count(id) > 3 order by month  asc; args=[u"'int"]
+ 2440: 2014-11-20 21:17:00 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:00 execute 91 (0.001) select hour,count(id) from basic_data_new
+        where food = '\'int'  group by hour having count(id) > 3 order by hour  asc; args=[u"'int"]
+ 2440: 2014-11-20 21:17:03 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:03 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 2440: 2014-11-20 21:17:04 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:04 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:04 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:04 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:04 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:04 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:04 execute 91 (0.094) select province,count(id) from basic_data_new
+        where food = 'int'  group by province having count(id) > 3 order by province  asc; args=[u'int']
+ 2440: 2014-11-20 21:17:04 execute 91 (0.090) select month,count(id) from basic_data_new
+        where food = 'int'  group by month having count(id) > 3 order by month  asc; args=[u'int']
+ 2440: 2014-11-20 21:17:04 execute 91 (0.091) select hour,count(id) from basic_data_new
+        where food = 'int'  group by hour having count(id) > 3 order by hour  asc; args=[u'int']
+ 2440: 2014-11-20 21:17:18 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:18 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,1000; args=None
+ 2440: 2014-11-20 21:17:20 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:20 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,1000; args=None
+ 2440: 2014-11-20 21:17:21 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:21 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,1000; args=None
+ 2440: 2014-11-20 21:17:23 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:23 execute 91 (0.000) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 2440: 2014-11-20 21:17:23 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:23 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:23 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:23 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:23 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:23 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:38 execute 91 (15.190) select hour,count(id) from basic_data_new
+        where food = '豆'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u8c46']
+ 2440: 2014-11-20 21:17:38 execute 91 (15.190) select month,count(id) from basic_data_new
+        where food = '豆'  group by month having count(id) > 3 order by month  asc; args=[u'\u8c46']
+ 2440: 2014-11-20 21:17:38 execute 91 (15.195) select province,count(id) from basic_data_new
+        where food = '豆'  group by province having count(id) > 3 order by province  asc; args=[u'\u8c46']
+ 2440: 2014-11-20 21:17:38 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 2440: 2014-11-20 21:17:38 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 2440: 2014-11-20 21:17:38 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 2440: 2014-11-20 21:17:38 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 2440: 2014-11-20 21:17:38 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 2440: 2014-11-20 21:17:38 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 2440: 2014-11-20 21:17:38 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 2440: 2014-11-20 21:17:38 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 2440: 2014-11-20 21:17:38 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 2440: 2014-11-20 21:17:39 insert_query_history 46 豆
+ 2440: 2014-11-20 21:17:39 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:39 execute 91 (0.000) insert into query_history(word) values('豆'); args=(u'\u8c46',)
+ 2440: 2014-11-20 21:17:52 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:52 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 2440: 2014-11-20 21:17:53 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:53 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:53 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:53 analyse 193 get_word begin:
+ 2440: 2014-11-20 21:17:53 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:53 execute 91 (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:53 execute 91 (0.043) select province,count(id) from basic_data_new
+        where food = '豆'  group by province having count(id) > 3 order by province  asc; args=[u'\u8c46']
+ 2440: 2014-11-20 21:17:53 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 2440: 2014-11-20 21:17:53 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 2440: 2014-11-20 21:17:53 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 2440: 2014-11-20 21:17:53 execute 91 (0.043) select hour,count(id) from basic_data_new
+        where food = '豆'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u8c46']
+ 2440: 2014-11-20 21:17:53 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 2440: 2014-11-20 21:17:53 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 2440: 2014-11-20 21:17:53 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 2440: 2014-11-20 21:17:53 execute 91 (0.047) select month,count(id) from basic_data_new
+        where food = '豆'  group by month having count(id) > 3 order by month  asc; args=[u'\u8c46']
+ 2440: 2014-11-20 21:17:53 cache_get 42 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 2440: 2014-11-20 21:17:53 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 2440: 2014-11-20 21:17:53 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 2440: 2014-11-20 21:17:53 insert_query_history 46 豆
+ 2440: 2014-11-20 21:17:53 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 2440: 2014-11-20 21:17:53 execute 91 (0.000) insert into query_history(word) values('豆'); args=(u'\u8c46',)
+ 8860: 2014-11-20 21:25:27 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 8860: 2014-11-20 21:25:27 execute 91 (0.000) SHOW TABLES; args=None
+ 8860: 2014-11-20 21:25:27 execute 91 (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+ 8860: 2014-11-20 21:30:56 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 8860: 2014-11-20 21:30:56 execute 91 (0.001) SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,4; args=None
+ 8860: 2014-11-20 21:30:57 analyse 198 get_word begin:
+ 8860: 2014-11-20 21:30:57 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 8860: 2014-11-20 21:30:57 analyse 198 get_word begin:
+ 8860: 2014-11-20 21:30:57 analyse 198 get_word begin:
+ 8860: 2014-11-20 21:30:57 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 8860: 2014-11-20 21:30:57 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 8860: 2014-11-20 21:30:57 execute 91 (0.043) select province,count(id) from basic_data_new
+        where food = '豆'  group by province having count(id) > 3 order by province  asc; args=[u'\u8c46']
+ 8860: 2014-11-20 21:30:57 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 8860: 2014-11-20 21:30:57 execute 91 (0.001) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_province'; args=('', '', '', u'all_province')
+ 8860: 2014-11-20 21:30:57 execute 91 (0.041) select hour,count(id) from basic_data_new
+        where food = '豆'  group by hour having count(id) > 3 order by hour  asc; args=[u'\u8c46']
+ 8860: 2014-11-20 21:30:57 cache_get 48 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 8860: 2014-11-20 21:30:57 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 8860: 2014-11-20 21:30:57 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_hour'; args=('', '', '', u'all_hour')
+ 8860: 2014-11-20 21:30:57 cache_get 48 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 8860: 2014-11-20 21:30:57 execute 91 (0.051) select month,count(id) from basic_data_new
+        where food = '豆'  group by month having count(id) > 3 order by month  asc; args=[u'\u8c46']
+ 8860: 2014-11-20 21:30:57 cache_get 45 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s begin:
+ 8860: 2014-11-20 21:30:57 execute 91 (0.000) select content from cache where province = '' and sex = '' and time = '' and kind = 'all_month'; args=('', '', '', u'all_month')
+ 8860: 2014-11-20 21:30:57 cache_get 48 cache_get sql:select content from cache where province = %s and sex = %s and time = %s and kind = %s end:
+ 8860: 2014-11-20 21:30:57 execute 91 (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+ 8860: 2014-11-20 21:30:57 execute 91 (0.000) insert into query_history(word) values('豆'); args=(u'\u8c46',)

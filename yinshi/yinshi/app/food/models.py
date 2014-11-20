@@ -8,6 +8,9 @@ import traceback
 import math
 
 table_name = "basic_data_new"
+#define a filter dict
+filter_query = ["union" , "and" , ";" "'"]
+filter_query_dict = dict.fromkeys(filter_query)
 enum = {"sex":
         {
         "woman":"sex = 'f'",
@@ -51,12 +54,14 @@ def cache_get(province,sex,time,kind):
 # 获取热门检索房屋中
 def get_hot_query(num):
     cursor = connection.cursor()
-    sql = "SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 1 group by word order by count(*) desc limit 0,{0}".format(num)
+    sql = "SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,{0}".format(num)
     cursor.execute(sql)
     sql_result = cursor.fetchall()
+    
     result = []
     for item in sql_result:
-        result.append(item[0])
+        if item not in filter_query_dict :
+            result.append(item[0])
     return result
 
 # 记录查询请求
