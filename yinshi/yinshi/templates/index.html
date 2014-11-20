@@ -102,7 +102,6 @@
 </div>
 
 
-
 <script src="/static/js/wordcloud2.js"></script>
 <div class="row">
 
@@ -195,13 +194,21 @@
 		var obj = JSON.parse(msg);
 		mylist = obj["weight"];
 		mycolor = obj["color"];
-		
+		//console.log(mylist) ;
 		WordCloud(document.getElementById('myCanvas'), 
 			{ list: mylist,
 				gridSize:5,
 				weightFactor: 2,
 				fontFamily: 'Average, Times, serif',
-				color: function(word){return mycolor[word];},
+				color: function(word){ 
+				
+									colorStr = mycolor[word];
+									rColor = parseInt(colorStr.substr(0,2),16 ) ;
+									gColor = parseInt(colorStr.substr(2,2),16 ) ;
+									bColor = parseInt(colorStr.substr(4,2),16 ) ;
+									//console.log(colorStr,rColor,gColor,bColor) ;
+									return "RGB("+[rColor, gColor , bColor].join(",") + ")" ;
+								},
 				rotateRatio: 0,
 				// hover: window.drawBox,
 				click: function(item) {
@@ -214,6 +221,23 @@
 			},  }
 			);
 	}
+	/*
+	(function word_cloud_test()
+	{
+		var obj = {
+					"weight" : [["sample",10],["test",20]],
+					"color" : {
+								"sample" : 0x00ee00 ,
+								"test" : 0xff0000
+								}
+					}
+		mylist = obj["weight"];
+		mycolor = obj["color"];
+		
+		WordCloud(document.getElementById('myCanvas'), 
+			{ list: mylist}
+			);
+	})() ;*/
 	</script>
 	{% endblock %}
 
@@ -227,7 +251,8 @@
 			success: function(msg) {
 				word_cloud(msg);
 				$('#food_search').removeAttr("disabled");
-				console.log(msg);
+				//console.log(msg);
+				
 			},
 			error: function(msg) {
 				$('#food_search').removeAttr("disabled");
@@ -261,7 +286,6 @@
 
         // --- 地图 ---
         var myChart2 = ec.init(document.getElementById('mainMap'));
-
 
         myChart2.setOption({
         	tooltip : {
@@ -321,9 +345,9 @@
 <script type="text/javascript">
 $(document).ready(function()
 {
+	var param_t = $('#form-submit').serialize();
 	$('#food_search').bind('click', function() {
 		var param = $('#form-submit').serialize();
-		
 		$('#food_search').attr({"disabled":"disabled"});
 		
 		
@@ -331,11 +355,9 @@ $(document).ready(function()
 
 		return false;
 	});
-
-
+	
 	$("#select_prov").val("北京"); 
-	$("#food_search").trigger("click")
-
+	$("#food_search").trigger("click") ;
 }
 );
 

@@ -10,7 +10,7 @@ import math
 import models
 import logging
 import re
-
+import urllib
 # 主页
 def index(request):
     logging.info("hello open")
@@ -74,17 +74,20 @@ def get_content(request):
 def analyse(request,kind):
 
     words = request.GET.get('word',"").strip().split(" ")
-    words = re.split(' |\+',request.GET.get('word',""))
-
+    words_unquote = urllib.unquote(request.GET.get('word',""))
+    words = re.split(' |\+',words_unquote)
     word = words[0] if words else ""
     attrs = words[1:]
-
+    #logging.info("word" + word)
+    #logging.info(request.GET.get('word',""))
     if kind == "month":
         list,top = models.analyse(kind,word,attrs)
     elif kind == "hour":
         list,top = models.analyse(kind,word,attrs)
     elif kind == "province":
         list,top = models.analyse(kind,word,attrs)
+    #logging.info("list : ")
+    #logging.info(list)
     return HttpResponse(json.dumps({"list":list,"top":top}))
 
 # 获取词云

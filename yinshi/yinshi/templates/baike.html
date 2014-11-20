@@ -69,13 +69,14 @@
 //     myChart.init($(this).attr('id'));
 // });
 
+//to get the query of the url
 function get_url_param(name)
 {
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	var url =  decodeURI(window.location.search);
-
+	//console.log("name : " + name + "\nurl : "+ url) ;
 	var r = url.substr(1).match(reg);
-
+	//console.log(r) ;
 	if (r!=null) return unescape(r[2]); return ""; 
 }
 $(document).ready(function(){
@@ -91,13 +92,17 @@ $(document).ready(function(){
 <script type="text/javascript">
 function send_ajax(kind) {
 	return {
-		url:'/analyse/' + kind + "?word=" + get_url_param("word"),
+		url:'/analyse/' + kind + "?word=" + encodeURI(get_url_param("word")),
 		// url: '/search?' + param,
 		method: 'get',
 		cache: false,  		
 		success: function(msg) {
 			var list = JSON.parse(msg);
+			//console.log("ajax return list :\n") ;
+			//console.log(list) ;
 			var result = list["list"];
+			//console.log("result : \n") ;
+			//console.log(result) ;
 			var top = list["top"];
 			var text = "";
 
