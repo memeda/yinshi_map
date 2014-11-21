@@ -9,7 +9,7 @@ import math
 
 table_name = "basic_data_new"
 #define a filter dict
-filter_query = ["union" , "and" , ";" "'"]
+filter_query = ["union" , "and" , ";" ,"'"]
 filter_query_dict = dict.fromkeys(filter_query)
 enum = {"sex":
         {
@@ -54,13 +54,17 @@ def cache_get(province,sex,time,kind):
 # 获取热门检索房屋中
 def get_hot_query(num):
     cursor = connection.cursor()
-    sql = "SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 2 group by word order by count(*) desc limit 0,{0}".format(num)
+    sql = "SELECT word FROM `query_history` where month(time)  >= month(current_timestamp) - 1 group by word order by count(*) desc limit 0,{0}".format(num)
     cursor.execute(sql)
     sql_result = cursor.fetchall()
-    
     result = []
     for item in sql_result:
-        if item not in filter_query_dict :
+        is_legal = True
+        for filter_item in filter_query_dict :
+            if item[0].find(filter_item) != -1 :
+                is_legal = False
+                break
+        if is_legal :
             result.append(item[0])
     return result
 
