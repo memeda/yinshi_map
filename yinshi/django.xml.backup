@@ -1,0 +1,7 @@
+<uwsgi>
+    <socket>127.0.0.1:8630</socket>
+	<chdir>/home/ubuntu/yinshi/django/yinshi/yinshi</chdir>
+	<pythonpath>/home/ubuntu/yinshi/django/yinshi/yinshi/yinshi</pythonpath>
+    <module>wsgi</module>
+    <plugins>python</plugins>
+</uwsgi>
