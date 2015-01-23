@@ -2,9 +2,13 @@
 
 
 
-
 {% block container %}
-
+<div class="row" style="margin-bottom:10px">
+    <div class="span5">
+        <h4 class="text-info">饮食地图 (基于词表版本)</h4>
+    </div>
+</div >
+<hr>
 <div class="row">
 	<div class="span12">
 		
@@ -147,8 +151,41 @@
 	</div>
 
 	{% endblock %}
+    {% block share%}
+    <div class="row">
+        <div class="span12">
 
 
+			<div class="ds-thread" data-thread-key="yinshiditu_dict" data-title="八维饮食地图 基于wordcount的对比版本" data-url="ys.8wss.com" data-image=http://ys.8wss.com/static/images/example.png></div>
+			<script type="text/javascript">
+			var duoshuoQuery = {short_name:"8wss"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+					|| document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+			</script>
+			<script type="text/javascript" >
+			var jiathis_config={
+				url:"http://ys.8wss.com",
+				summary:"利用@语言云 技术，深入挖掘微博信息。#饮食地图# 可以分地区，分性别，分时间查看特色饮食。北京人真的爱吃烤鸭吗？黑龙江的特色食物是什么？详情请见:",
+				title:"微博用户饮食地图",
+				pic:"http://ys.8wss.com/static/images/example.jpg",
+				ralateuid:{
+					"tsina":"hitcir"
+				},
+				shortUrl:true,
+				hideMore:false
+			}
+			</script>
+
+		</div>
+    </div>
+    {% endblock %}
+    
 
 
 	{% include 'footer.html' %}
