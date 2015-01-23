@@ -184,22 +184,39 @@
 				rotateRatio: 0,
 				// hover: window.drawBox,
 				click: function(item) {
+                    //disabled it !
+                    return false ;
 					var word = item[0];
-					// alert(word);
 					var param2 = $('#form-submit').serialize();
-					param2 += "&word=" + word;
+					param2 += "&word=" + word + "&dict=true";
 					window.open('./baike?' + param2);
-				// window.location.href='./test?' + param2;
 			},  }
 			);
 	}
-	
+	/*
+	(function word_cloud_test()
+	{
+		var obj = {
+					"weight" : [["sample",10],["test",20]],
+					"color" : {
+								"sample" : 0x00ee00 ,
+								"test" : 0xff0000
+								}
+					}
+		mylist = obj["weight"];
+		mycolor = obj["color"];
+		
+		WordCloud(document.getElementById('myCanvas'), 
+			{ list: mylist}
+			);
+	})() ;*/
 	</script>
 	{% endblock %}
 
 
 	<script type="text/javascript">
 	function init_query_pram(param) {
+        param += "&dict=true"
 		return {
 			url: '/search?' + param,
 			method: 'get',

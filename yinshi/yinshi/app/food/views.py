@@ -84,14 +84,18 @@ def analyse(request,kind):
     words = re.split(' |\+',words_unquote)
     word = words[0] if words else ""
     attrs = words[1:]
+    is_select_dict = True if request.GET.get('dict',"") == "true" else False 
+    if is_select_dict :
+        print  "enter dict"
+    print "aaaaa"
     #logging.info("word" + word)
     #logging.info(request.GET.get('word',""))
     if kind == "month":
-        list,top = models.analyse(kind,word,attrs)
+        list,top = models.analyse(kind,word,attrs , is_select_dict)
     elif kind == "hour":
-        list,top = models.analyse(kind,word,attrs)
+        list,top = models.analyse(kind,word,attrs , is_select_dict)
     elif kind == "province":
-        list,top = models.analyse(kind,word,attrs)
+        list,top = models.analyse(kind,word,attrs , is_select_dict)
     #logging.info("list : ")
     #logging.info(list)
     return HttpResponse(json.dumps({"list":list,"top":top}))
@@ -103,7 +107,10 @@ def wordcloud(request):
     province = request.GET.get('province',"")
     kind = request.GET.get('kind',"")
     month = request.GET.get('month',"")
-    result = models.cal_pmi(kind,sex,time,province,month)
+    #__________DICT_____________
+    is_select_dict = True if request.GET.get('dict' , 'False') == "true" else False
+    logging.info("start to cal pmi info sex:%s time:%s province:%s kind:%s is_select_dict:%s"%(sex,time,province,kind,str(is_select_dict)))
+    result = models.cal_pmi(kind,sex,time,province,is_select_dict)
 
     logging.info("request info sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind))
 
@@ -113,12 +120,12 @@ def wordcloud(request):
     for index,line in enumerate(result):
         if index == 30:
             break
-        list["weight"].append([line[0],35-index])
-        list["color"][line[0]] = int(line[2])
+        list["weight"].append([line[0],35-index]) #read commit : let the PMI order decide the WEIGHT(SIZE)
+        list["color"][line[0]] = int(line[2]) # read commit : let the "food_count" decide the COLOR
         # logging.info("word:{0} frequence:{1} pmi:{2}".format(line[0],line[2],line[3]))
 
 
-    sort_color = sorted(list["color"].items(),key=lambda a:a[1],reverse=False)
+    sort_color = sorted(list["color"].items(),key=lambda a:a[1],reverse=False) # ASC sorted
     for index,(key,value) in enumerate(sort_color):
         list["color"][key] = get_color(0,len(sort_color)-1,index)
 
@@ -129,12 +136,12 @@ def wordcloud(request):
 def get_color(min,max,weight):
     colorlist = ['239ccc','3c9e01','b4d701','fc2c02','e10001']
     color = ""
-    weight = ( weight - min ) * (len(colorlist) - 1) * 1.0 /( max - min )
+    weight = ( weight - min ) * (len(colorlist) - 1) * 1.0 / ( max - min )
     left = colorlist[int(weight)]
 
     right = colorlist[int(math.ceil(weight))]
     for i in range(0,3):
-        item =  "%02X"%(int( (int(left[i*2:i*2+2],16) + int(right[i*2:i*2+2],16) ) * 0.5 ))
+        item =  "%02X"%(int( (int(left[i*2:i*2+2],16) + int(right[i*2:i*2+2],16) ) * 0.5 )) # just get the center color of the left->right ?
         # print item
         color += item
     return color
@@ -194,4 +201,66 @@ def gen_cache(request):
                     logging.info("add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind))
     logging.info("gen cache end")
     print ("%s:gen cache end")
+def gen_cache_dict(request):
+    print "begin to gen cache"
+    logging.info("begin to gen cache")
 
+    count = 0
+    kinds = ["fruit","food","drink","wine","tea","all"]
+    sexs = ["man","woman",""]
+    times = ["morning","noon","afternoon","evening",""]
+    provinces = [
+                    #"北京".decode('utf-8'),
+                    #"浙江".decode('utf-8'),
+                    #"天津".decode('utf-8'),
+                    #"安徽".decode('utf-8'),
+                    #"上海".decode('utf-8'),
+                    "福建".decode('utf-8'),
+                    "重庆".decode('utf-8'),
+                    "江西".decode('utf-8'),
+                    "山东".decode('utf-8'),
+                    "河南".decode('utf-8'),
+                    "湖北".decode('utf-8'),
+                    "湖南".decode('utf-8'),
+                    "广东".decode('utf-8'),
+                    "海南".decode('utf-8'),
+                    "山西".decode('utf-8'),
+                    "青海".decode('utf-8'),
+                    "江苏".decode('utf-8'),
+                    "辽宁".decode('utf-8'),
+                    "吉林".decode('utf-8'),
+                    "台湾".decode('utf-8'),
+                    "河北".decode('utf-8'),
+                    "贵州".decode('utf-8'),
+                    "四川".decode('utf-8'),
+                    "云南".decode('utf-8'),
+                    "陕西".decode('utf-8'),
+                    "甘肃".decode('utf-8'),
+                    "黑龙江".decode('utf-8'),
+                    "香港".decode('utf-8'),
+                    "澳门".decode('utf-8'),
+                    "广西".decode('utf-8'),
+                    "宁夏".decode('utf-8'),
+                    "新疆".decode('utf-8'),
+                    "内蒙古".decode('utf-8'),
+                    "西藏".decode('utf-8'),
+                    ""]
+    for province in provinces:
+        for sex in sexs:
+            #for time in times:
+            for time in [""]:
+                #for kind in kinds:
+                for kind in ["all"] :
+                    result = models.cal_pmi(kind,sex,time,province,True)
+                    print "add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind)
+                    logging.info("add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind))
+    logging.info("gen cache end")
+    print ("%s:gen cache end")
+
+#------------DICT------------
+def dict_index(request):
+    logging.info("hello open")
+    t = get_template('dict_index.html')
+    context = Context({'top_words':models.get_hot_query(4)})
+    html = t.render(context)
+    return HttpResponse(html)
