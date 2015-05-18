@@ -22,4 +22,6 @@ urlpatterns = patterns('',
     #-----DICT-------
     url(r'^dict$' , views.dict_index) ,
     url(r'^cache_dict$',views.gen_cache_dict),
+    #-----ALL for contrast-----
+    url(r'^contrast$', views.all_for_contrast)
 )

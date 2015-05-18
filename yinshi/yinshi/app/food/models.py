@@ -8,8 +8,12 @@ import traceback
 import math
 
 table_name = "basic_data_new"
-dict_table = "yinshi_dict"
-stat_table_name = "stat"
+#[2015.05.17] using new_dict_table for dp . abandon old dict table 
+#dict_table = "yinshi_dict"
+#[2015.05.13] using new yinshi_dict for word_count based
+new_dict_table = "yinshi_dict_new"
+#[2015.05.13] stat_table_name = "stat"
+stat_table_name = "stat_view"
 #define a filter dict
 filter_query = ["union" , "and" , ";" ,"'"]
 filter_query_dict = dict.fromkeys(filter_query)
@@ -111,7 +115,12 @@ def cal_pmi(kind,sex,time,province ,is_select_dict=False):
             if sex:
                 param.append(enum["sex"][sex])
             if time:
-                param.append(enum["time"][time])
+                ## update : in stat_view table , we store the time instead the hour any more
+                #param.append(enum["time"][time])
+                if is_select_dict :
+                    param.append(" time = '%s' " %(time))
+                else :
+                    param.append(enum["time"][time])
             if param:
                 for index,item in enumerate(param):
                     if index == 0:
@@ -129,7 +138,7 @@ def cal_pmi(kind,sex,time,province ,is_select_dict=False):
             ((select food,province,count(food) as food_province_count from {table} {where_query} group by food having count(food) > 5)a
             inner join
             (select food,count(food) as food_count from {table} group by food having count(food) > 50)
-            b on a.food = b.food ), {dict_table} where a.food = {dict_table}.food {kind_query} order by result desc limit 0,50'''.format(table = table_name,where_query = where,kind_query = kind_param , dict_table=dict_table)
+            b on a.food = b.food ), {dict_table} where a.food = {dict_table}.food {kind_query} order by result desc limit 0,50'''.format(table = table_name,where_query = where,kind_query = kind_param , dict_table=new_dict_table)
             
             if is_select_dict :
                 sql_yinshi = '''
@@ -145,7 +154,7 @@ def cal_pmi(kind,sex,time,province ,is_select_dict=False):
                 where
                     a.food = {dict_table}.food {kind_query} 
                     order by result desc limit 0,50
-                '''.format(table=stat_table_name , dict_table=dict_table , where_query=where , kind_query=kind_param)
+                '''.format(table=stat_table_name , dict_table=new_dict_table , where_query=where , kind_query=kind_param)
                 #print >> sys.stderr , sql_yinshi
             logging.info("sql cal begin:%s"%(sql_yinshi))
 

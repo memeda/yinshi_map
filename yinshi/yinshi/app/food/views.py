@@ -203,18 +203,18 @@ def gen_cache(request):
     print ("%s:gen cache end")
 def gen_cache_dict(request):
     print "begin to gen cache"
-    logging.info("begin to gen cache")
+    logging.info("begin to gen dict cache")
 
     count = 0
     kinds = ["fruit","food","drink","wine","tea","all"]
     sexs = ["man","woman",""]
     times = ["morning","noon","afternoon","evening",""]
     provinces = [
-                    #"北京".decode('utf-8'),
-                    #"浙江".decode('utf-8'),
-                    #"天津".decode('utf-8'),
-                    #"安徽".decode('utf-8'),
-                    #"上海".decode('utf-8'),
+                    "北京".decode('utf-8'),
+                    "浙江".decode('utf-8'),
+                    "天津".decode('utf-8'),
+                    "安徽".decode('utf-8'),
+                    "上海".decode('utf-8'),
                     "福建".decode('utf-8'),
                     "重庆".decode('utf-8'),
                     "江西".decode('utf-8'),
@@ -244,13 +244,12 @@ def gen_cache_dict(request):
                     "新疆".decode('utf-8'),
                     "内蒙古".decode('utf-8'),
                     "西藏".decode('utf-8'),
-                    ""]
+                    ""
+                    ]
     for province in provinces:
         for sex in sexs:
-            #for time in times:
-            for time in [""]:
-                #for kind in kinds:
-                for kind in ["all"] :
+            for time in times:
+                for kind in kinds:
                     result = models.cal_pmi(kind,sex,time,province,True)
                     print "add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind)
                     logging.info("add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind))
@@ -261,6 +260,13 @@ def gen_cache_dict(request):
 def dict_index(request):
     logging.info("hello open")
     t = get_template('dict_index.html')
+    context = Context({'top_words':models.get_hot_query(4)})
+    html = t.render(context)
+    return HttpResponse(html)
+    
+#-----------all for contrast ----- at [2015.05.13]
+def all_for_contrast(request) :
+    t = get_template('all_for_contrast_index.html')
     context = Context({'top_words':models.get_hot_query(4)})
     html = t.render(context)
     return HttpResponse(html)
