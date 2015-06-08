@@ -202,7 +202,7 @@ def gen_cache(request):
     logging.info("gen cache end")
     print ("%s:gen cache end")
 def gen_cache_dict(request):
-    print "begin to gen cache"
+    print "begin to gen dict  cache"
     logging.info("begin to gen dict cache")
 
     count = 0
