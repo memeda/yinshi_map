@@ -4,16 +4,12 @@ import MySQLdb,sys,re,pickle
 import logging
 # Create your models here.
 from django.db import connection
+from info import *
 import traceback
 import math
 
-table_name = "basic_data_new"
-#[2015.05.17] using new_dict_table for dp . abandon old dict table 
-#dict_table = "yinshi_dict"
-#[2015.05.13] using new yinshi_dict for word_count based
-new_dict_table = "yinshi_dict_new"
-#[2015.05.13] stat_table_name = "stat"
-stat_table_name = "stat_view"
+
+
 #define a filter dict
 filter_query = ["union" , "and" , ";" ,"'"]
 filter_query_dict = dict.fromkeys(filter_query)
@@ -45,13 +41,20 @@ enum = {
        }
 
 # 获取缓存信息
-def cache_get(province,sex,time,kind , is_select_dict=False):
+def cache_get(province,sex,time,kind , display_type=DISPLAY_DP):
 
     cursor = connection.cursor()
-    cache_table_name = "cache"
-    if is_select_dict :
-        cache_table_name = "cache_dict"
-    cache_sql = "select content from {cache_table_name} where province = %s and sex = %s and time = %s and kind = %s".format(cache_table_name=cache_table_name)
+    if display_type == DISPLAY_DP :
+        cur_select_table = cache_dp_table_name
+    elif display_type == DISPLAY_WORDCOUNT :
+        cur_select_table = cache_wordcount_table_name
+    elif display_type == DISPLAY_CRF :
+        cur_select_table = cache_crf_table_name
+    else :
+        raise Exception("display type error")
+  
+    cache_sql = "select content from {cache_table_name} where province = %s and sex = %s and time = %s and kind = %s".format(
+                 cache_table_name=cur_select_table)
     logging.info("cache_get sql:%s begin:"%(cache_sql))
     cursor.execute(cache_sql,(province,sex,time,kind))
     cache_result = cursor.fetchone()
@@ -85,23 +88,31 @@ def insert_query_history(word):
     cursor.execute(sql,(word,))
 
 # 更新缓存
-def insert_cache(province,sex,time,kind,data,is_select_dict=False):
+def insert_cache(province,sex,time,kind,data,display_type=DISPLAY_DP):
     cursor = connection.cursor()
     binary = MySQLdb.Binary(pickle.dumps(data))
-    cache_table_name = "cache"
-    if is_select_dict :
-        cache_table_name = "cache_dict"
-    cache_sql = "insert into {cache_table_name}(province,sex,time,kind,content) values(%s,%s,%s,%s,%s)".format(cache_table_name=cache_table_name)
+    
+    if display_type == DISPLAY_DP :
+        cur_select_table = cache_dp_table_name
+    elif display_type == DISPLAY_WORDCOUNT :
+        cur_select_table = cache_wordcount_table_name
+    elif display_type == DISPLAY_CRF :
+        cur_select_table = cache_crf_table_name
+    else :
+        raise Exception("display type error")
+    
+    cache_sql = "insert into {cache_table_name}(province,sex,time,kind,content) values(%s,%s,%s,%s,%s)".format(
+                 cache_table_name=cur_select_table)
     cursor.execute(cache_sql,(province,sex,time,kind,binary))
 
 # 根据检索条件计算pmi,返回数据库中的查询结果
-def cal_pmi(kind,sex,time,province ,is_select_dict=False):
+def cal_pmi(kind,sex,time,province ,display_type=DISPLAY_DP):
     try:
         cursor = connection.cursor()
         logging.info("kind:%s sex:%s time:%s province:%s cal_pmi begin:"%(kind,sex,time,province))
         # cache_sql = "select content from cache where province = %s and sex = %s and time = %s and kind = %s"
         # cursor.execute(cache_sql,(province,sex,time,kind))
-        result = cache_get(province,sex,time,kind , is_select_dict)
+        result = cache_get(province,sex,time,kind , display_type)
 
         if not result:
             logging.info("kind:%s sex:%s time:%s province:%s not in cache:"%(kind,sex,time,province))
@@ -117,7 +128,7 @@ def cal_pmi(kind,sex,time,province ,is_select_dict=False):
             if time:
                 ## update : in stat_view table , we store the time instead the hour any more
                 #param.append(enum["time"][time])
-                if is_select_dict :
+                if display_type == DISPLAY_WORDCOUNT or display_type == DISPLAY_CRF :
                     param.append(" time = '%s' " %(time))
                 else :
                     param.append(enum["time"][time])
@@ -131,41 +142,60 @@ def cal_pmi(kind,sex,time,province ,is_select_dict=False):
             if kind:
                 kind_param = " and " + enum["kind"][kind]
             # param_list.append(kind_param)
-            
+            if display_type == DISPLAY_DP :
+                cur_select_table = table_name
+                total_food_count_threshold = 50
+                province_food_count_threshold = 5
+            elif display_type == DISPLAY_WORDCOUNT :
+                cur_select_table = stat_table_name
+                total_food_count_threshold = 50
+                province_food_count_threshold = 5
+            elif display_type == DISPLAY_CRF :
+                cur_select_table = crf_stat_table_name
+                total_food_count_threshold = 150
+                province_food_count_threshold = 20
+            else :
+                raise Exception("display type error")
+                
             sql_yinshi = '''select distinct a.food,food_province_count,food_count,
             food_province_count*(select count(*) from {table})/(food_count*(select count(*) from {table} {where_query} ))
             as result from
-            ((select food,province,count(food) as food_province_count from {table} {where_query} group by food having count(food) > 5)a
+            ((select food,province,count(food) as food_province_count from {table} {where_query} 
+              group by food having count(food) > {province_food_count_threshold}) a
             inner join
-            (select food,count(food) as food_count from {table} group by food having count(food) > 50)
-            b on a.food = b.food ), {dict_table} where a.food = {dict_table}.food {kind_query} order by result desc limit 0,50'''.format(table = table_name,where_query = where,kind_query = kind_param , dict_table=new_dict_table)
+            (select food,count(food) as food_count from {table} group by food having count(food) > {total_food_count_threshold})
+            b on a.food = b.food ), {dict_table} where a.food = {dict_table}.food {kind_query} order by result desc limit 0,50'''.format(
+            table = cur_select_table,where_query = where,kind_query = kind_param , dict_table=new_dict_table ,
+            province_food_count_threshold=province_food_count_threshold , total_food_count_threshold=total_food_count_threshold)
             
-            if is_select_dict :
+            if display_type == DISPLAY_WORDCOUNT or display_type == DISPLAY_CRF :
                 sql_yinshi = '''
                 select 
                     distinct a.food , food_province_count , food_count , 
                     (food_province_count * (select sum(num) from {table}) ) / ( food_count * (select sum(num) from {table} {where_query}) ) as result
                 from
-                    (  (select food , province , sum(num) as food_province_count from {table} {where_query} group by food having sum(num) > 5) a
+                    (  (select food , province , sum(num) as food_province_count from {table} {where_query} 
+                       group by food having sum(num) > {province_food_count_threshold}) a
                        inner join
-                       (select food , sum(num) as food_count from {table} group by food having sum(num) > 50) b
+                       (select food , sum(num) as food_count from {table} 
+                       group by food having sum(num) > {total_food_count_threshold}) b
                        on a.food = b.food
                     ) , {dict_table}
                 where
                     a.food = {dict_table}.food {kind_query} 
                     order by result desc limit 0,50
-                '''.format(table=stat_table_name , dict_table=new_dict_table , where_query=where , kind_query=kind_param)
+                '''.format(table=cur_select_table , dict_table=new_dict_table , where_query=where , kind_query=kind_param ,
+                province_food_count_threshold=province_food_count_threshold , total_food_count_threshold=total_food_count_threshold)
                 #print >> sys.stderr , sql_yinshi
-            logging.info("sql cal begin:%s"%(sql_yinshi))
-
+            #logging.info("sql cal begin:%s"%(sql_yinshi))
+            
             cursor.execute(sql_yinshi,param_list)
             result = cursor.fetchall()
-            logging.info("sql cal end:%s"%(sql_yinshi))
+            #logging.info("sql cal end:%s"%(sql_yinshi))
 
-            insert_cache(province,sex,time,kind,result , is_select_dict)
+            insert_cache(province,sex,time,kind,result , display_type)
 
-
-        logging.info("kind:%s sex:%s time:%s  province:%s cal_pmi end:"%(kind,sex,time,province))
+        #logging.info("kind:%s sex:%s time:%s  province:%s cal_pmi end:"%(kind,sex,time,province))
     except Exception, e:
         print e
         print traceback.format_exc()
@@ -221,7 +251,7 @@ def get_content(sex,time,province,word):
     return list
 
 # 针对单个词汇进行地区，月份，小时，属性分析，并返回结果
-def analyse(kind,word,attrs,is_select_dict=False):
+def analyse(kind,word,attrs,display_type=DISPLAY_DP):
     try:
         logging.info("get_word begin:")
         attr_query = ""
@@ -229,15 +259,25 @@ def analyse(kind,word,attrs,is_select_dict=False):
         for attr in attrs:
             attr_query += " and content like %s "
             params.append('%'+ attr + '%')
+        
+        if display_type == DISPLAY_DP :
+            cur_select_table = table_name
+        elif display_type == DISPLAY_WORDCOUNT :
+            cur_select_table = stat_table_name
+        elif display_type == DISPLAY_CRF :
+            cur_select_table = crf_result_table_name
+        else :
+            raise Exception("display type error")
+            
         sql = '''select {kind_query},count(id) from {table}
-        where food = %s {attr_query} group by {kind_query} having count(id) > 3 order by {kind_query}  asc'''.format(table = table_name,kind_query=kind,word=word,attr_query=attr_query)
-        #____DICT______ dict has not "content" filed 
-        if is_select_dict :
+        where food = %s {attr_query} group by {kind_query} having count(id) > 3 order by {kind_query}  asc'''.format(table = cur_select_table,kind_query=kind,word=word,attr_query=attr_query)
+        #____CHANGE______ wordcount based is different from the other 2 
+        if display_type == DISPLAY_WORDCOUNT :
             sel = """
                   select {kind_query} , sum(num)
                   from {table}
                   where food = %s group by {kind_query} having sum(num) > 3 order by {kind_query} asc
-                  """.format(table = stat_table_name , kind_query=kind)
+                  """.format(table = cur_select_table , kind_query=kind)
         cursor = connection.cursor()
         cursor.execute(sql,params)
         one = cursor.fetchall()
@@ -245,19 +285,19 @@ def analyse(kind,word,attrs,is_select_dict=False):
         if len(one) < 1:
             return  ({"min":0,"max":0,"list":[]},[])
 
-        total = cache_get("","","","all_"+kind,is_select_dict)
+        total = cache_get("","","","all_"+kind,display_type)
         if not total:
-            sql = '''select {kind_query},count(id) from {table}  group by {kind_query} order by {kind_query} asc'''.format(table = table_name,kind_query=kind)
-            if is_select_dict :
+            sql = '''select {kind_query},count(id) from {table}  group by {kind_query} order by {kind_query} asc'''.format(table = cur_select_table,kind_query=kind)
+            if display_type == DISPLAY_WORDCOUNT :
                 sql = """
                         select {kind_query} , sum(num)
                         from {table}
                         group by {kind_query} order by {kind_query} asc 
-                      """.format(table=stat_table_name , kind_query=kind)
+                      """.format(table=cur_select_table , kind_query=kind)
                 print >> sys.stderr , sql
             cursor.execute(sql)
             total = cursor.fetchall()
-            insert_cache("","","","all_"+kind,total,is_select_dict)
+            insert_cache("","","","all_"+kind,total,display_type)
 
 
 
@@ -302,6 +342,8 @@ def analyse(kind,word,attrs,is_select_dict=False):
     except Exception, e:
         print e
         print traceback.format_exc()
+        
+        
 def average(list):
     if list:
         return sum(list)*1.0/len(list)

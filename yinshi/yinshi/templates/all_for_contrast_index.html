@@ -127,6 +127,12 @@
                 Your user agent does not support the HTML5 Canvas element.
             </canvas>
         </div>
+        <div class="row">
+            <h4 class="text-info">基于CRF结果</h4>
+            <canvas style= "cursor:pointer;" id="crfCanvas" width="550" height="280">
+                Your user agent does not support the HTML5 Canvas element.
+            </canvas>
+        </div>
 		<div align="center">
 			<h4><span style="color:blue">点击上面的词语可查看更详细的统计信息</span></h4>
 		</div>
@@ -165,7 +171,7 @@
         <div class="span12">
 
 
-			<div class="ds-thread" data-thread-key="yinshiditu_dict" data-title="八维饮食地图 基于wordcount的对比版本" data-url="ys.8wss.com" data-image=http://ys.8wss.com/static/images/example.png></div>
+			<div class="ds-thread" data-thread-key="yinshiditu_contrast" data-title="八维饮食地图 dp,wordcount,crf的对比版本" data-url="ys.8wss.com" data-image=http://ys.8wss.com/static/images/example.png></div>
 			<script type="text/javascript">
 			var duoshuoQuery = {short_name:"8wss"};
 			(function() {
@@ -247,11 +253,16 @@
 	function init_query_pram(param,result_source) {
         var targetCanvasId = "" ;
         if(result_source == "wordcount"){
-            param += "&dict=true" ;
+            param += "&display_type=wordcount" ;
             targetCanvasId = "wordcountCanvas" ;
         } 
         else if(result_source == "dp"){
+            param += "&display_type=dp" ;
             targetCanvasId = "dpCanvas" ;
+        }
+        else if(result_source == "crf"){
+            param += "&display_type=crf" ;
+            targetCanvasId = "crfCanvas" ;
         }
         else targetCanvasId = "wrong" ;
         //console.log("here targetCanvas id is " + targetCanvasId + " , result_source is " + result_source) ;
@@ -364,7 +375,7 @@ $(document).ready(function()
     window.click_func = function() {
 		var param = $('#form-submit').serialize();
 		$('#food_search').attr({"disabled":"disabled"});
-		var target_sources = ["dp" ,"wordcount"] ;
+		var target_sources = ["dp" ,"wordcount","crf"] ;
 		for(var idx in target_sources){
             $.ajax(init_query_pram(param,target_sources[idx]));
         }

@@ -5,6 +5,9 @@ from django.template import Template
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.db import connection
+
+from info import *
+
 import json
 import math
 import models
@@ -84,18 +87,19 @@ def analyse(request,kind):
     words = re.split(' |\+',words_unquote)
     word = words[0] if words else ""
     attrs = words[1:]
-    is_select_dict = True if request.GET.get('dict',"") == "true" else False 
-    if is_select_dict :
-        print  "enter dict"
-    print "aaaaa"
+    
+    ## ____CHANGE______
+    display_type = (DISPLAY_DP if request.GET.get('display_type',"") not in [DISPLAY_DP , DISPLAY_WORDCOUNT , DISPLAY_CRF] 
+                               else request.GET.get('display_type') )
+
     #logging.info("word" + word)
     #logging.info(request.GET.get('word',""))
     if kind == "month":
-        list,top = models.analyse(kind,word,attrs , is_select_dict)
+        list,top = models.analyse(kind,word,attrs , display_type)
     elif kind == "hour":
-        list,top = models.analyse(kind,word,attrs , is_select_dict)
+        list,top = models.analyse(kind,word,attrs , display_type)
     elif kind == "province":
-        list,top = models.analyse(kind,word,attrs , is_select_dict)
+        list,top = models.analyse(kind,word,attrs , display_type)
     #logging.info("list : ")
     #logging.info(list)
     return HttpResponse(json.dumps({"list":list,"top":top}))
@@ -107,11 +111,12 @@ def wordcloud(request):
     province = request.GET.get('province',"")
     kind = request.GET.get('kind',"")
     month = request.GET.get('month',"")
-    #__________DICT_____________
-    is_select_dict = True if request.GET.get('dict' , 'False') == "true" else False
-    logging.info("start to cal pmi info sex:%s time:%s province:%s kind:%s is_select_dict:%s"%(sex,time,province,kind,str(is_select_dict)))
-    result = models.cal_pmi(kind,sex,time,province,is_select_dict)
-
+    #__________CHANGE_____________
+    display_type = (DISPLAY_DP if request.GET.get('display_type',"") not in [DISPLAY_DP , DISPLAY_WORDCOUNT , DISPLAY_CRF] 
+                               else request.GET.get('display_type') )
+    #logging.info("start to cal pmi info sex:%s time:%s province:%s kind:%s display_type:%s"%(sex,time,province,kind,str(display_type)))
+    result = models.cal_pmi(kind,sex,time,province,display_type)
+    
     logging.info("request info sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind))
 
 
@@ -196,7 +201,7 @@ def gen_cache(request):
         for sex in sexs:
             for time in times:
                 for kind in kinds:
-                    result = models.cal_pmi(kind,sex,time,province)
+                    result = models.cal_pmi(kind,sex,time,province,DISPLAY_DP)
                     print "add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind)
                     logging.info("add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind))
     logging.info("gen cache end")
@@ -250,7 +255,7 @@ def gen_cache_dict(request):
         for sex in sexs:
             for time in times:
                 for kind in kinds:
-                    result = models.cal_pmi(kind,sex,time,province,True)
+                    result = models.cal_pmi(kind,sex,time,province,DISPLAY_WORDCOUNT)
                     print "add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind)
                     logging.info("add cache sex:%s time:%s province:%s kind:%s "%(sex,time,province,kind))
     logging.info("gen cache end")
