@@ -15,13 +15,14 @@ urlpatterns = patterns('',
     url(r'^autocomplate',views.get_top_word),
     url(r'^analyse/(.*)',views.analyse),
     url(r'^insertqueryhistory/.*',views.insert_query_history),
-    url(r'^cache$',views.gen_cache),
+    #url(r'^cache$',views.gen_cache),  ## Abandon , use pre_cache.py instead
     url(r'^baike',views.baike),
     
     url(r'^admin/', include(admin.site.urls)),
     #-----DICT-------
     url(r'^dict$' , views.dict_index) ,
-    url(r'^cache_dict$',views.gen_cache_dict),
+    #url(r'^cache_dict$',views.gen_cache_dict),  ## Abandon
+    
     #-----ALL for contrast-----
     url(r'^contrast$', views.all_for_contrast)
 )

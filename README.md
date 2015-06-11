@@ -1,6 +1,31 @@
 #微博饮食地图
 ------
-基于Django框架，是微博饮食地图的后台。
+基于Django框架
+
+####2015.06.11更新
+
+1. 新建dev分支
+    
+    原始master分支保持到上个版本不变，此次更新在dev分支完成
+    
+2. 增加crf结果展示（在contrast页面）
+    
+    crf原始结果约1千5百万，直接计算cache不能承受。故采用了与wordcount相同的处理方式
+    
+3. 小幅代码修改
+
+    重用整个流程，将原始的is_dict标志位参数改为display_type参数，并将改动贯穿前端后台。
+    
+    新建info.py用于存储常量，包括dispay_type的取值，数据表的名称等
+    
+    新建pre_cache.py文件，废弃掉之前通过url请求来预生成cache的方法。具体使用方法为:
+    
+        	python manage.py shell
+            from yinshi.app.food.pre_cached import gen_cache
+            gen_cache('dp'/'wordcount'/'crf')
+    
+
+
 
 ####2015.05.18更新
 
